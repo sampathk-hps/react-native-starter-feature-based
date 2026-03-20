@@ -1,0 +1,20 @@
+{
+  "back": "Back",
+  "cancel": "Cancel",
+  "clear": "Clear",
+  "continue": "Continue",
+  "default": "Default",
+  "error": "Error",
+  "initialising": "Initialising",
+  "no": "No",
+  "settings": "Settings",
+  "yes": "Yes",
+  "home": "Home",
+  "profile": "Profile",
+  "confirm": "Confirm",
+  "login": "Login",
+  "email": "Email",
+  "password": "Password",
+  "logout": "Logout",
+  "submit": "Submit"
+}
