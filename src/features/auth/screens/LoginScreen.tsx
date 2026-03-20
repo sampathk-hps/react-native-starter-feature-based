@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { useAppTheme } from '../../../core/theme/ThemeContext';
+import { useTypedTranslation } from '../../../core/localization/useTypedTranslation';
 import { useAuthContext } from '../../../core/auth/AuthContext';
 import { loginThunk } from '../slice/authSlice';
 import LoginForm, { LoginFormValues } from '../components/LoginForm';
@@ -15,6 +16,7 @@ import { AppDispatch, RootState } from '../../../core/redux/store';
 
 const LoginScreen = () => {
   const { colors } = useAppTheme();
+  const { t } = useTypedTranslation();
   const { login } = useAuthContext();
   const dispatch = useDispatch<AppDispatch>();
 
@@ -44,10 +46,10 @@ const LoginScreen = () => {
       >
         <View style={styles.header}>
           <Text style={[styles.title, { color: colors.primaryTextDeep }]}>
-            Welcome back
+            {t('auth.welcomeBack')}
           </Text>
           <Text style={[styles.subtitle, { color: colors.secondaryText }]}>
-            Sign in to continue
+            {t('auth.signInToContinue')}
           </Text>
         </View>
 

@@ -8,6 +8,7 @@ import {
 } from 'react';
 import { TokenService } from '../api/tokenService';
 import { logger } from '../logger/Logger';
+import { initI18n } from '../localization/i18n';
 
 interface AuthUser {
   id: string;
@@ -51,6 +52,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     const restoreSession = async () => {
       try {
+        await initI18n();
         const tokens = await TokenService.get();
         if (tokens?.accessToken) {
           setAuthData({

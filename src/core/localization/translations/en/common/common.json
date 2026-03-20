@@ -16,5 +16,7 @@
   "email": "Email",
   "password": "Password",
   "logout": "Logout",
-  "submit": "Submit"
+  "submit": "Submit",
+  "success": "Success",
+  "warning": "Warning"
 }

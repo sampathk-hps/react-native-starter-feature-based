@@ -2,11 +2,13 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { ProfileScreenProps } from '../../core/navigation/NavigationPropTypes';
 import { useAppTheme } from '../../core/theme/ThemeContext';
 import { useAuthContext } from '../../core/auth/AuthContext';
+import { useTypedTranslation } from '../../core/localization/useTypedTranslation';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const ProfileScreen = (_props: ProfileScreenProps) => {
   const { colors } = useAppTheme();
   const { authData, logout } = useAuthContext();
+  const { t } = useTypedTranslation();
 
   return (
     <SafeAreaView
@@ -14,7 +16,7 @@ const ProfileScreen = (_props: ProfileScreenProps) => {
     >
       <View style={styles.content}>
         <Text style={[styles.title, { color: colors.primaryText }]}>
-          Profile
+          {t('common.profile')}
         </Text>
 
         {authData.user && (
@@ -33,7 +35,7 @@ const ProfileScreen = (_props: ProfileScreenProps) => {
           onPress={logout}
         >
           <Text style={[styles.logoutText, { color: colors.white }]}>
-            Logout
+            {t('common.logout')}
           </Text>
         </TouchableOpacity>
       </View>

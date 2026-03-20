@@ -1,0 +1,8 @@
+{
+  "cameraUnavailable": "Camera is not available on this device.",
+  "permissionDenied": "Camera or gallery permission was denied.",
+  "selectionCancelled": "Image selection was cancelled.",
+  "unsupportedFileType": "The selected file type is not supported.",
+  "imageSizeExceeded": "The selected image exceeds the maximum allowed size.",
+  "unexpectedError": "An unexpected error occurred while selecting an image."
+}

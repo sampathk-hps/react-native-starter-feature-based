@@ -1,0 +1,8 @@
+{
+  "invalidEmail": "Enter a valid email address",
+  "passwordMinLength": "Password must be at least {{count}} characters",
+  "invalidPhone": "Enter a valid 10-digit phone number",
+  "fieldRequired": "{{label}} is required",
+  "invalidPin": "Enter a valid 6-digit pin code",
+  "invalidUrl": "Enter a valid URL (http/https)"
+}

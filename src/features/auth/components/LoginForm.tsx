@@ -9,11 +9,10 @@ import {
   View,
 } from 'react-native';
 import { useAppTheme } from '../../../core/theme/ThemeContext';
+import { useTypedTranslation } from '../../../core/localization/useTypedTranslation';
+import { ValidationUtils } from '../../../utils/ValidationUtils';
 
-const loginSchema = z.object({
-  email: z.email('Enter a valid email address'),
-  password: z.string().min(6, 'Password must be at least 6 characters'),
-});
+const { loginSchema } = ValidationUtils;
 
 export type LoginFormValues = z.infer<typeof loginSchema>;
 
@@ -25,6 +24,7 @@ interface Props {
 
 const LoginForm = ({ onSubmit, isLoading, serverError }: Props) => {
   const { colors } = useAppTheme();
+  const { t } = useTypedTranslation();
 
   const {
     control,
@@ -51,7 +51,7 @@ const LoginForm = ({ onSubmit, isLoading, serverError }: Props) => {
     <View style={styles.form}>
       <View style={styles.field}>
         <Text style={[styles.label, { color: colors.secondaryText }]}>
-          Email
+          {t('common.email')}
         </Text>
         <Controller
           control={control}
@@ -87,7 +87,7 @@ const LoginForm = ({ onSubmit, isLoading, serverError }: Props) => {
 
       <View style={styles.field}>
         <Text style={[styles.label, { color: colors.secondaryText }]}>
-          Password
+          {t('common.password')}
         </Text>
         <Controller
           control={control}
@@ -146,7 +146,7 @@ const LoginForm = ({ onSubmit, isLoading, serverError }: Props) => {
           <Text
             style={[styles.submitLabel, { color: colors.primaryAccentColor }]}
           >
-            Sign In
+            {t('auth.signIn')}
           </Text>
         )}
       </TouchableOpacity>

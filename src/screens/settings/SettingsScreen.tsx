@@ -1,15 +1,17 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { SettingsScreenProps } from '../../core/navigation/NavigationPropTypes';
 import { useAppTheme } from '../../core/theme/ThemeContext';
+import { useTypedTranslation } from '../../core/localization/useTypedTranslation';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const SettingsScreen = (_props: SettingsScreenProps) => {
   const { colors, themeMode, changeAppTheme } = useAppTheme();
+  const { t } = useTypedTranslation();
 
   const themes: Array<{ label: string; value: 'light' | 'dark' | 'system' }> = [
-    { label: 'Light', value: 'light' },
-    { label: 'Dark', value: 'dark' },
-    { label: 'System', value: 'system' },
+    { label: t('settings.themeLight'), value: 'light' },
+    { label: t('settings.themeDark'), value: 'dark' },
+    { label: t('settings.themeSystem'), value: 'system' },
   ];
 
   return (
@@ -18,12 +20,12 @@ const SettingsScreen = (_props: SettingsScreenProps) => {
     >
       <View style={styles.content}>
         <Text style={[styles.title, { color: colors.primaryText }]}>
-          Settings
+          {t('common.settings')}
         </Text>
 
         <View style={styles.section}>
           <Text style={[styles.sectionLabel, { color: colors.secondaryText }]}>
-            Appearance
+            {t('settings.appearance')}
           </Text>
           <View
             style={[
