@@ -1,45 +1,43 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import { useEffect } from 'react';
+import { Provider } from 'react-redux';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { PaperProvider } from 'react-native-paper';
+import { store } from './src/core/redux/store';
+import { AppThemeProvider } from './src/core/theme/ThemeContext';
+import { AuthProvider } from './src/core/auth/AuthContext';
+import AppNavigationRoutes from './src/core/navigation/AppNavigationRoutes';
+import { NetworkService } from './src/core/network/NetworkService';
+import { BackgroundSync } from './src/core/sync/BackgroundSync';
+import { registerJobsSyncHandler } from './src/features/jobs/sync/jobsSyncService';
 
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
-import {
-  SafeAreaProvider,
-  useSafeAreaInsets,
-} from 'react-native-safe-area-context';
+const AppBoot = () => {
+  useEffect(() => {
+    NetworkService.start();
+    registerJobsSyncHandler();
+    BackgroundSync.configure();
 
-function App() {
-  const isDarkMode = useColorScheme() === 'dark';
+    return () => {
+      NetworkService.stop();
+    };
+  }, []);
 
+  return <AppNavigationRoutes />;
+};
+
+const App = () => {
   return (
     <SafeAreaProvider>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <AppContent />
+      <Provider store={store}>
+        <AppThemeProvider>
+          <AuthProvider>
+            <PaperProvider>
+              <AppBoot />
+            </PaperProvider>
+          </AuthProvider>
+        </AppThemeProvider>
+      </Provider>
     </SafeAreaProvider>
   );
-}
-
-function AppContent() {
-  const safeAreaInsets = useSafeAreaInsets();
-
-  return (
-    <View style={styles.container}>
-      <NewAppScreen
-        templateFileName="App.tsx"
-        safeAreaInsets={safeAreaInsets}
-      />
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
+};
 
 export default App;
